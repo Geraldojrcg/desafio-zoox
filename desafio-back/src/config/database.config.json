@@ -1,0 +1,6 @@
+{
+    "address": "cluster0-gsmh0.mongodb.net",
+    "user": "test",
+    "password": "test",
+    "database": "desafiozooxdb"
+}
