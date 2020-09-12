@@ -14,7 +14,7 @@
                   />
                 </v-col>
                 <v-col style="display: flex; flex-direction: column; justify-content: center">
-                  <p class="display-2 text--primary">1</p>
+                  <p class="display-2 text--primary">{{ estados.length }}</p>
                   <h3 class="text--primary">Estados cadastrados</h3>
                 </v-col>
               </v-row>
@@ -36,7 +36,7 @@
                   />
                 </v-col>
                 <v-col style="display: flex; flex-direction: column; justify-content: center">
-                  <p class="display-2 text--primary">2</p>
+                  <p class="display-2 text--primary">{{ cidades.length }}</p>
                   <h3 class="text--primary">Cidades cadastradas</h3>
                 </v-col>
               </v-row>
@@ -52,8 +52,20 @@
 </template>
 
 <script>
+import api from "../services/api";
+
 export default {
-  name: "home"
+  name: "home",
+  data: () => ({
+    estados: [],
+    cidades: []
+  }),
+  async mounted() {
+    this.$loading(true);
+    this.cidades = await api.get("/cidade");
+    this.estados = await api.get("/estado");
+    this.$loading(false);
+  }
 };
 </script>
 
